@@ -1,0 +1,151 @@
+<style>
+        :root {
+            --primary-color: #0f3460;
+            --secondary-color: #e94560;
+            --accent-color: #f8a44c;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .login-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .login-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .login-header h2 {
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .login-header p {
+            margin: 0.5rem 0 0 0;
+            opacity: 0.9;
+        }
+
+        .login-body {
+            padding: 2rem;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+            padding: 0.75rem 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(15, 52, 96, 0.25);
+        }
+
+        .btn-login {
+            background: var(--primary-color);
+            border: none;
+            border-radius: 10px;
+            padding: 0.75rem 2rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            width: 100%;
+        }
+
+        .btn-login:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .input-group-text {
+            background: transparent;
+            border: 2px solid #e9ecef;
+            border-right: none;
+            border-radius: 10px 0 0 10px;
+        }
+
+        .input-group .form-control {
+            border-left: none;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .alert {
+            border-radius: 10px;
+            border: none;
+        }
+
+        .church-logo {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+        }
+
+        .forgot-password {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .forgot-password a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .forgot-password a:hover {
+            color: var(--secondary-color);
+        }
+    </style>
+
+
+     <script>
+        document.getElementById('togglePassword').addEventListener('click', function () {
+            const password = document.getElementById('password');
+            const toggleIcon = document.getElementById('toggleIcon');
+            const isHidden = password.type === 'password';
+
+            password.type = isHidden ? 'text' : 'password';
+            toggleIcon.className = isHidden ? 'bi bi-eye-slash' : 'bi bi-eye';
+        });
+
+        document.getElementById('username').focus();
+
+        // Handle remember me
+        document.getElementById('remember').addEventListener('change', function () {
+            const usernameField = document.getElementById('username');
+            if (this.checked) {
+                localStorage.setItem('remember_username', usernameField.value);
+            } else {
+                localStorage.removeItem('remember_username');
+            }
+        });
+
+        // Load remembered username
+        window.addEventListener('load', function () {
+            const remembered = localStorage.getItem('remember_username');
+            if (remembered) {
+                document.getElementById('username').value = remembered;
+                document.getElementById('remember').checked = true;
+                document.getElementById('password').focus();
+            }
+        });
+    </script>
